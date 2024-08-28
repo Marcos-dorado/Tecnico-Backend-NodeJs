@@ -4,9 +4,9 @@ require("dotenv").config();
 const cors = require("cors");
 
 const userRoutes = require("./routes/user");
-const tProcedimientoRoutes = require("./routes/tipoProcedimiento");
+// const tProcedimientoRoutes = require("./routes/tipoProcedimiento");
 const casoRoutes = require("./routes/caso");
-const tSolucionRoutes = require("./routes/tipoSolucion");
+// const tSolucionRoutes = require("./routes/tipoSolucion");
 // const authRoutes = require("./routes/auth");
 
 const app = express();
@@ -17,9 +17,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", userRoutes);
-app.use("/api", tProcedimientoRoutes);
+// app.use("/api", tProcedimientoRoutes);
 app.use("/api", casoRoutes);
-app.use("/api", tSolucionRoutes);
+// app.use("/api", tSolucionRoutes);
 // app.use("/auth", authRoutes);
 
 // Rutas

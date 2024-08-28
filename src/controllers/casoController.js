@@ -25,8 +25,8 @@ exports.getCasoById = (req, res) => {
 
 exports.updateCaso = (req, res) => {
   const { id } = req.params;
-  const { descripcion, estado } = req.body;
-  Caso.findByIdAndUpdate(id, { descripcion, estado }, { new: true })
+  const { descripcion, estado, solucion, tipoProcedimiento, tipoSolucion } = req.body;
+  Caso.findByIdAndUpdate(id, { descripcion, estado, solucion, tipoProcedimiento, tipoSolucion }, { new: true })
     .then((data) => {
       if (!data) return res.status(404).json({ message: "Caso no encontrado" });
       res.json(data);
@@ -41,5 +41,12 @@ exports.deleteCaso = (req, res) => {
       if (!data) return res.status(404).json({ message: "Caso no encontrado" });
       res.json({ message: "Caso eliminado" });
     })
+    .catch((error) => res.status(500).json({ message: error.message }));
+};
+
+exports.getCasosByEstado = (req, res) => {
+  const { estado } = req.query;
+  Caso.find({ estado })
+    .then((data) => res.json(data))
     .catch((error) => res.status(500).json({ message: error.message }));
 };
